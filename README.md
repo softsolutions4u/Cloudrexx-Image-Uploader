@@ -17,4 +17,16 @@ $ sudo npm install -g ionic cordova
 $ sudo ionic start myApp blank
 ```
 
+Cordova plugin's
+
+Image Picker
+```
+$ ionic plugin add https://github.com/wymsee/cordova-imagePicker.git
+```
+
+File uploader
+```
+$ ionic plugin add cordova-plugin-file-transfer
+```
+
 Replace the _www_ folder with the current branch files.

@@ -1,1 +1,59 @@
-/* Empty. Add your own CSS if you like */
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.cloudrexx-logo, .blue-cloud {
+    float: left;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+}
+.cloudrexx-logo .col, .blue-cloud .col {
+    float: left;
+    width: 100%;
+}
+img.cloud-logo, img.cloud-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.btn-abs {
+    position: absolute;
+    width: 90%;
+    bottom: 50%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.cloud-image-upload {
+    background-color: #95C700;
+    border-color: #95C700;
+}
+.cloud-image-upload.activated {
+    background-color: #449d44;
+    border-color: #398439;
+}
+.cloud-image-upload, .cloud-image-upload.activated, .cloud-image-upload:hover {
+    color: #ffffff;
+}
+@media (max-width: 991px) {
+    img.cloud-logo, img.cloud-image {
+        width: 500px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .btn-abs {
+        bottom: 100px;
+    }
+}
+@media (max-width: 767px) {
+    img.cloud-logo, img.cloud-image {
+        width: 300px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .btn-abs {
+        bottom: 60px;
+    }
+}
