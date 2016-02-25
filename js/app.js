@@ -1,4 +1,4 @@
-angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'cloudrexx.controllers'])
+angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 'cloudrexx.controllers'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -25,10 +25,16 @@ angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'cloudrexx.controllers'])
     * @param $urlRouterProvider   Watching the $location change
     * @param $ionicConfigProvider Configuration phase of the app
     */
-    .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $translateProvider) {
         $ionicConfigProvider.views.forwardCache(true);
         $ionicConfigProvider.navBar.alignTitle('center');
         $ionicConfigProvider.scrolling.jsScrolling(true);
+
+        for (lang in translations) {
+            $translateProvider.translations(lang, translations[lang]);
+        }
+
+        $translateProvider.preferredLanguage('en');
 
         $stateProvider
             .state('app', {
