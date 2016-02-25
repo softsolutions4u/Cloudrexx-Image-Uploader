@@ -1,11 +1,9 @@
 body {
     cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
-.cloudrexx-logo, .blue-cloud {
+.blue-cloud {
     float: left;
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
     position: relative;
 }
 .cloudrexx-logo .col, .blue-cloud .col {
@@ -37,11 +35,22 @@ img.cloud-logo, img.cloud-image {
 .cloud-image-upload, .cloud-image-upload.activated, .cloud-image-upload:hover {
     color: #ffffff;
 }
+.home-view .scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.home-view .content-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
 @media (max-width: 991px) {
     img.cloud-logo, img.cloud-image {
         width: 500px;
         height: auto;
         margin: 0 auto;
+        margin-top: -200px;
     }
     .btn-abs {
         bottom: 100px;
@@ -52,6 +61,7 @@ img.cloud-logo, img.cloud-image {
         width: 300px;
         height: auto;
         margin: 0 auto;
+        margin-top: -100px;
     }
     .btn-abs {
         bottom: 60px;

@@ -1,46 +1,4 @@
-angular.module('cloudrexx', ['ionic'])
-
-    .constant('CLOUDREXX_API_URL', 'http://coludrexx.just-testing.net/Api')
-
-    .controller('UploadCtrl', ['$scope', 'UploadService', function ($scope, UploadService) {
-        $scope.uploadImages = function() {
-            window.imagePicker.getPictures(
-                function(results) {
-                    for (var i = 0; i < results.length; i++) {
-                        UploadService.upload(results[i]);
-                    }
-                },
-                function (error) {},
-                {
-                    maximumImagesCount: 10,
-                    quality: 80
-                }
-            );
-        };
-    }])
-
-    .service('UploadService', ['CLOUDREXX_API_URL', function(CLOUDREXX_API_URL) {
-        this.success = function success(r) {
-            console.log("Code = " + r.responseCode);
-            console.log("Response = " + r.response);
-            console.log("Sent = " + r.bytesSent);
-        };
-
-        this.fail = function fail(error) {
-            console.log("upload error source " + error.source);
-            console.log("upload error target " + error.target);
-        };
-
-        this.upload = function(fileUrl) {
-            var uri = encodeURI(CLOUDREXX_API_URL + '/Media/Upload/1');
-
-            var options = new FileUploadOptions();
-                options.fileKey="test_file_name";
-
-            var ft = new FileTransfer();
-            ft.upload(fileUrl, uri, this.success, this.fail, options);
-        };
-    }])
+angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'cloudrexx.controllers'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -58,4 +16,37 @@ angular.module('cloudrexx', ['ionic'])
                 StatusBar.styleDefault();
             }
         });
-    });
+    })
+
+    /**
+    * Configure app
+    *
+    * @param $stateProvider       Interfaces to declare states for your app.
+    * @param $urlRouterProvider   Watching the $location change
+    * @param $ionicConfigProvider Configuration phase of the app
+    */
+    .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+        $ionicConfigProvider.views.forwardCache(true);
+        $ionicConfigProvider.navBar.alignTitle('center');
+        $ionicConfigProvider.scrolling.jsScrolling(true);
+
+        $stateProvider
+            .state('app', {
+                url: "/app",
+                abstract: true,
+                templateUrl: "templates/menu.html",
+                controller: 'AppCtrl'
+            })
+
+            .state('app.home', {
+                url: "/home",
+                views: {
+                    menuContent: {
+                        templateUrl: 'templates/home.html',
+                        controller: 'HomeCtrl'
+                    }
+                }
+            });
+
+        $urlRouterProvider.otherwise('/app/home');
+    }]);
