@@ -1,6 +1,6 @@
 <ion-view view-title="{{ 'manage_sites' | translate }}" class="manage-site-view" cache-view="false">
     <ion-content>
-        <ion-list class="list-inset">
+        <ion-list class="instance-list list-inset">
             <ion-item>
                 <button class="button cloudrexx-button">
                     {{ 'add_new' | translate }}
@@ -10,8 +10,8 @@
                 {{item}}
                 <span uib-dropdown-toggle class="button button-icon icon ion-android-more-vertical"></span>
                 <ul uib-dropdown-menu class="pull-right">
-                    <li><a ui-sref="app.manageSites">{{ 'manage_sites' | translate }}</a></li>
-                    <li><a href="#"><i class="ion-android-add-circle"></i> {{ 'add_website' | translate }} </a></li>
+                    <li><a href="#">{{ 'deactivate' | translate }}</a></li>
+                    <li><a href="#">{{ 'remove' | translate }}</a></li>
                 </ul>
             </ion-item>
         </ion-list>

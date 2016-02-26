@@ -3,5 +3,7 @@ translations["en"] = {
     add_website: "Add website",
     upload_image: "Upload Image",
     add_new: "Add New",
-    back: "Back"
+    back: "Back",
+    deactivate: "Deactivate",
+    remove: "Remove"
 };
