@@ -1,7 +1,23 @@
 angular.module('cloudrexx.controllers', [])
 
-    .controller('AppCtrl', ['$scope', function($scope) {
+    .controller('AppCtrl', ['$scope', '$ionicModal', function($scope, $ionicModal) {
 
+        $ionicModal.fromTemplateUrl('templates/addWebsite.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.modal = modal;
+            });
+
+        $scope.showAddWebsiteModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeAddWebsiteModal = function() {
+            $scope.modal.hide();
+        };
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
     }])
 
     .controller('HomeCtrl', ['$scope', function($scope) {

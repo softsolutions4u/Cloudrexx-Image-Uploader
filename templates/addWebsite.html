@@ -1,0 +1,22 @@
+<ion-modal-view class="ion-nifty-modal">
+    <div class="ion-modal-content-custom">
+        <ion-content class="padding" scroll="false">
+            <ion-list>
+                <label class="item item-input-inset">
+                    <input type="text" placeholder="{{ 'website_name' | translate }}">
+                    <span class="input-label">.cloudrexx.com</span>
+                </label>
+                <label class="item item-input">
+                    <input type="email" placeholder="{{ 'email_address' | translate }}">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="{{ 'password' | translate }}">
+                </label>
+            </ion-list>
+            <div class="pull-right padding">
+                <button ng-click="closeAddWebsiteModal()" class="button cloudrexx-button">{{ 'cancel' | translate}}</button>
+                <button class="button cloudrexx-button">{{ 'submit' | translate}}</button>
+            </div>
+        </ion-content>
+    </div>
+</ion-modal-view>

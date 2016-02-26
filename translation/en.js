@@ -5,5 +5,10 @@ translations["en"] = {
     add_new: "Add New",
     back: "Back",
     deactivate: "Deactivate",
-    remove: "Remove"
+    remove: "Remove",
+    website_name: "Website name",
+    email_address: "Email Address",
+    password: "Password",
+    submit: "Submit",
+    cancel: "Cancel",
 };

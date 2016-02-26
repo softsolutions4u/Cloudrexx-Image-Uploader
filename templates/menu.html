@@ -7,7 +7,7 @@
             <span uib-dropdown-toggle class="button button-icon icon ion-android-more-vertical"></span>
             <ul uib-dropdown-menu class="pull-right">
                 <li><a ui-sref="app.manageSites">{{ 'manage_sites' | translate }}</a></li>
-                <li><a href="#"><i class="ion-android-add-circle"></i> {{ 'add_website' | translate }} </a></li>
+                <li><a ng-click="showAddWebsiteModal()"><i class="ion-android-add-circle"></i> {{ 'add_website' | translate }} </a></li>
             </ul>
         </span>
     </ion-nav-buttons>
