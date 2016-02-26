@@ -1,6 +1,6 @@
 <ion-view view-title="{{ 'manage_sites' | translate }}" class="manage-site-view" cache-view="false">
     <ion-content>
-        <ion-list class="instance-list list-inset">
+        <div class="instance-list list card">
             <ion-item>
                 <button ng-click="showAddWebsiteModal()" class="button cloudrexx-button">
                     {{ 'add_new' | translate }}
@@ -14,6 +14,6 @@
                     <li><a href="#">{{ 'remove' | translate }}</a></li>
                 </ul>
             </ion-item>
-        </ion-list>
+        </div>
     </ion-content>
 </ion-view>
