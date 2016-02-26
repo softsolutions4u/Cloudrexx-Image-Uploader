@@ -17,4 +17,12 @@ angular.module('cloudrexx.controllers', [])
                 }
             );
         };
+    }])
+
+    .controller('ManageSitesCtrl', ['$scope', function($scope) {
+        $scope.items = [];
+
+        for (var i = 1; i <= 15; i++) {
+          $scope.items.push("Instance " + i);
+        }
     }]);

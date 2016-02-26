@@ -1,12 +1,12 @@
 <ion-nav-bar class="nav-home-header bar-stable">
     <ion-nav-back-button class="button-clear">
-        <i class="ion-chevron-left"></i> Back
+        <i class="ion-chevron-left"></i> {{ 'back' | translate }}
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
         <span uib-dropdown>
             <span uib-dropdown-toggle class="button button-icon icon ion-android-more-vertical"></span>
             <ul uib-dropdown-menu class="pull-right">
-                <li><a href="#">{{ 'manage_sites' | translate }}</a></li>
+                <li><a ui-sref="app.manageSites">{{ 'manage_sites' | translate }}</a></li>
                 <li><a href="#"><i class="ion-android-add-circle"></i> {{ 'add_website' | translate }} </a></li>
             </ul>
         </span>

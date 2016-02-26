@@ -53,6 +53,16 @@ angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 
                         controller: 'HomeCtrl'
                     }
                 }
+            })
+
+            .state('app.manageSites', {
+                url: "/manageSites",
+                views: {
+                    menuContent: {
+                        templateUrl: 'templates/manageSites.html',
+                        controller: 'ManageSitesCtrl'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/app/home');

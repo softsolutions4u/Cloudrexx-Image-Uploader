@@ -1,1 +1,1 @@
-
+translations["de"] = {};

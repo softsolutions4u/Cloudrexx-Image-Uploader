@@ -6,11 +6,11 @@ body {
     width: 100%;
     position: relative;
 }
-.cloudrexx-logo .col, .blue-cloud .col {
+.blue-cloud .col {
     float: left;
     width: 100%;
 }
-img.cloud-logo, img.cloud-image {
+img.cloud-image {
     width: 100%;
     height: auto;
     display: block;
@@ -24,15 +24,15 @@ img.cloud-logo, img.cloud-image {
     margin: 0 auto;
     text-align: center;
 }
-.cloud-image-upload {
+.cloudrexx-button {
     background-color: #95C700;
     border-color: #95C700;
 }
-.cloud-image-upload.activated {
+.cloudrexx-button.activated {
     background-color: #449d44;
     border-color: #398439;
 }
-.cloud-image-upload, .cloud-image-upload.activated, .cloud-image-upload:hover {
+.cloudrexx-button, .cloudrexx-button.activated, .cloudrexx-button:hover {
     color: #ffffff;
 }
 .home-view .scroll-content {
@@ -46,7 +46,7 @@ img.cloud-logo, img.cloud-image {
   text-align: center;
 }
 @media (max-width: 991px) {
-    img.cloud-logo, img.cloud-image {
+    img.cloud-image {
         width: 500px;
         height: auto;
         margin: 0 auto;
@@ -57,7 +57,7 @@ img.cloud-logo, img.cloud-image {
     }
 }
 @media (max-width: 767px) {
-    img.cloud-logo, img.cloud-image {
+    img.cloud-image {
         width: 300px;
         height: auto;
         margin: 0 auto;
