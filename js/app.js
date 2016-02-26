@@ -35,6 +35,7 @@ angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 
         }
 
         $translateProvider.preferredLanguage('en');
+        $translateProvider.fallbackLanguage('en');
 
         $stateProvider
             .state('app', {
