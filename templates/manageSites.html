@@ -6,8 +6,8 @@
                     {{ 'add_new' | translate }}
                 </button>
             </ion-item>
-            <ion-item uib-dropdown class="item-icon-right" ng-repeat="item in items track by $index">
-                {{item}}
+            <ion-item uib-dropdown class="item-icon-right" ng-repeat="instance in instances track by $index">
+                {{instance.name}}
                 <span uib-dropdown-toggle class="button button-icon icon ion-android-more-vertical"></span>
                 <ul uib-dropdown-menu class="pull-right">
                     <li><a href="#">{{ 'deactivate' | translate }}</a></li>

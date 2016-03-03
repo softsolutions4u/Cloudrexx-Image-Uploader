@@ -45,7 +45,7 @@ img.cloud-image {
   vertical-align: middle;
   text-align: center;
 }
-.instance-list .item {
+.instance-list, .instance-list .item {
     overflow: visible;
     z-index: initial;
 }

@@ -1,4 +1,4 @@
-angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 'cloudrexx.controllers'])
+angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 'ngStorage', 'cloudrexx.controllers', 'cloudrexx.services'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
