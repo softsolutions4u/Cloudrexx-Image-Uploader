@@ -11,5 +11,6 @@ translations["en"] = {
     password: "Password",
     submit: "Submit",
     cancel: "Cancel",
-    saving_data: "Saving data"
+    saving_data: "Saving data",
+    website: "Website"
 };

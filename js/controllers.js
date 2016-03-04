@@ -1,6 +1,8 @@
 angular.module('cloudrexx.controllers', [])
 
-    .controller('AppCtrl', ['$scope', '$ionicModal', '$ionicLoading', '$state', '$filter', '$localStorage', 'AccessService', function($scope, $ionicModal, $ionicLoading, $state, $filter, $localStorage, AccessService) {
+    .controller('AppCtrl', ['$scope', '$ionicModal', '$ionicLoading', '$state', '$filter', 'CloudrexxUtils', 'AccessService', function($scope, $ionicModal, $ionicLoading, $state, $filter, CloudrexxUtils, AccessService) {
+        $scope.instances = CloudrexxUtils.getInstances();
+
         var $translate  = $filter('translate');
         $scope.instance = {instanceName: '', username: '', password: ''};
 
@@ -8,7 +10,7 @@ angular.module('cloudrexx.controllers', [])
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function(modal) {
-                $scope.modal = modal;
+                $scope.addWebsiteModal = modal;
             });
 
         $scope.addWebsite = function() {
@@ -25,7 +27,10 @@ angular.module('cloudrexx.controllers', [])
             AccessService
                 .doLogin(data)
                 .then(function() {
-                    $state.go("app.manageSites"), $ionicLoading.hide(), $scope.modal.hide();
+                    $state.go("app.manageSites"),
+                    $scope.instances = CloudrexxUtils.getInstances(),
+                    $ionicLoading.hide(),
+                    $scope.addWebsiteModal.hide();
                 }, function(n) {
                     $scope.error = n, $ionicLoading.hide();
                 });
@@ -33,17 +38,44 @@ angular.module('cloudrexx.controllers', [])
         $scope.showAddWebsiteModal = function() {
             // reset instance values
             $scope.instance = {instanceName: '', username: '', password: ''};
-            $scope.modal.show();
+            $scope.addWebsiteModal.show();
         };
         $scope.closeAddWebsiteModal = function() {
-            $scope.modal.hide();
+            $scope.addWebsiteModal.hide();
         };
         $scope.$on('$destroy', function() {
-            $scope.modal.remove();
+            $scope.addWebsiteModal.remove();
         });
     }])
 
-    .controller('HomeCtrl', ['$scope', function($scope) {
+    .controller('HomeCtrl', ['$scope', '$ionicModal', 'UploadService', function($scope, $ionicModal, UploadService) {
+        $scope.upload    = {instance: 0, path: ''};
+        $scope.selectedInstanceUploadPaths = [];
+
+        $ionicModal.fromTemplateUrl('templates/upload.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.uploadModal = modal;
+            });
+        $scope.showUploadModal = function() {
+            $scope.loadUploadPaths();
+            $scope.uploadModal.show();
+        };
+        $scope.closeAddWebsiteModal = function() {
+            $scope.uploadModal.hide();
+        };
+        $scope.$on('$destroy', function() {
+            $scope.uploadModal.remove();
+        });
+
+        $scope.loadUploadPaths = function() {
+            var objInstance = $scope.instances[$scope.upload.instance],
+                instance    = objInstance.name;
+
+            $scope.selectedInstanceUploadPaths = UploadService.getUploadPathsByInstanceName(instance);
+        };
+
         $scope.chooseImages = function() {
             window.imagePicker.getPictures(
                 function(results) {

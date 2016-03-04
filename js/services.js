@@ -1,8 +1,34 @@
 angular.module('cloudrexx.services', [])
-    
-    .service('CloudrexxUtils', ['CLOUDREXX_URL_SCHEMA', 'CLOUDREXX_MARKETING_DOMAIN', 'CLOUDREXX_API_PATH', function(CLOUDREXX_URL_SCHEMA, CLOUDREXX_MARKETING_DOMAIN, CLOUDREXX_API_PATH){
+
+    .service('CloudrexxUtils', ['CLOUDREXX_URL_SCHEMA', 'CLOUDREXX_MARKETING_DOMAIN', 'CLOUDREXX_API_PATH', '$localStorage', function(CLOUDREXX_URL_SCHEMA, CLOUDREXX_MARKETING_DOMAIN, CLOUDREXX_API_PATH, $localStorage){
         this.getApiUrlByInstanceName = function(instance) {
-            return CLOUDREXX_URL_SCHEMA + '://' + instance + CLOUDREXX_MARKETING_DOMAIN + CLOUDREXX_API_PATH;
+            return this.getUrlByInstanceName(instance) + CLOUDREXX_API_PATH;
+        };
+        this.getUrlByInstanceName = function(instance) {
+            return CLOUDREXX_URL_SCHEMA + '://' + instance + '.' + CLOUDREXX_MARKETING_DOMAIN;
+        };
+        this.getInstances = function() {
+            $localStorage.$default({instances: {name:[], data: []}});
+            return $localStorage.instances.data;
+        };
+    }])
+
+    .service('UploadService', ['$http', '$q', 'CloudrexxUtils', 'AccessService', function($http, $q, CloudrexxUtils, AccessService){
+        this.getUploadPathsByInstanceName = function(instanceName) {
+            var deferred    = $q.defer(),
+                session     = AccessService.getSessionByInstanceName(instanceName),
+                instanceUrl = CloudrexxUtils.getUrlByInstanceName(instanceName);
+            return $http
+                    .jsonp(instanceUrl +"/cadmin/index.php?cmd=JsonData&object=MediaBrowser&act=getSources&session="+ session +"&callback=JSON_CALLBACK")
+                    .then(function(response){
+                        if (response.status === 'error') {
+                            deferred.reject(response.message);
+                            return;
+                        }
+                        deferred.resolve(response.data);
+                    }, function(error) {
+                        deferred.reject('Error occured. try after sometime');
+                    }), deferred.promise;
         };
     }])
 
@@ -50,6 +76,15 @@ angular.module('cloudrexx.services', [])
                 instances.name.push(instance);
             } else {
                 instances.data[index] = instanceData;
+            }
+        };
+        this.getSessionByInstanceName = function(instance) {
+            $localStorage.$default({instances: {name:[], data: []}});
+            var instances = $localStorage.instances,
+                index     = instances.name.indexOf(instance);
+            if (index !== -1) {
+                var objInstance = instances.data[index];
+                return objInstance.session;
             }
         };
     }]);

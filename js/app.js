@@ -25,10 +25,12 @@ angular.module('cloudrexx', ['ionic', 'ui.bootstrap', 'pascalprecht.translate', 
     * @param $urlRouterProvider   Watching the $location change
     * @param $ionicConfigProvider Configuration phase of the app
     */
-    .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $translateProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$translateProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $translateProvider, $httpProvider) {
         $ionicConfigProvider.views.forwardCache(true);
         $ionicConfigProvider.navBar.alignTitle('center');
         $ionicConfigProvider.scrolling.jsScrolling(true);
+
+        $httpProvider.defaults.headers.common["Check-CSRF"] = 'false';
 
         for (lang in translations) {
             $translateProvider.translations(lang, translations[lang]);
